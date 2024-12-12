@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f5f5f5;
+}
+
+.dashboard-container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    background-color: #137DC5;
+    color: white;
+    padding: 20px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    height: 100%;
+}
+.sidebar footer{
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+.sidebar h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    font-weight: 500;
+    padding: 10px;
+    display: block;
+}
+.sidebar a:hover {
+    background-color: #C5137D;
+}
+
+.main-content {
+    margin-left: 20%;
+    padding: 20px;
+    width: 80%;
+}
+
+.analytics-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+}
+
+.chart-container {
+    margin-bottom: 20px;
+}
+
+.table-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}

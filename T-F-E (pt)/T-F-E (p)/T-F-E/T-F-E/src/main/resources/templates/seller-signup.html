@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller signup</title>
+  <link rel="stylesheet" th:href="@{/styles/Style.css}">
+</head>
+<body>
+<div class="container">
+  <div class="signup-form">
+    <header>
+      <img src="/images/50de99b76f0ea3922972c82a12ef4901.png" alt="The Fuel exchange" class="banner-logo">
+    </header>
+    <h1>Seller Signup</h1>
+    <form action="http://localhost:8080/users/register/seller" id="sellerSignupForm" method="POST">
+      <input type="hidden" name="role" value="SELLER"/>
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" id="username" name="username" required>
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" placeholder="Enter Email" id="email" name="email" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter Password" id="password" name="password" required>
+      </div>
+      <div class="input-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" id="confirm-password" name="confirmPassword" required>
+      </div>
+      <div class="input-group">
+        <label for="companyName">Company Name</label>
+        <input type="text" placeholder="Enter Company Name" id="companyName" name="companyName">
+      </div>
+      <div class="input-group">
+        <label for="companyDescription">Company Description</label>
+        <input type="text" placeholder="Enter Company Description" id="companyDescription" name="companyDescription"/>
+      </div>
+      <div class="input-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" placeholder="Enter Phone Number" id="phoneNumber" name="phoneNumber">
+      </div>
+      <div class="input-group fuel-types">
+        <fieldset>
+          <legend>Fuel Options</legend>
+          <div>
+            <input type="checkbox" id="Diesel" name="Diesel">
+            <label for="Diesel">Diesel</label>
+          </div>
+          <div>
+            <input type="checkbox" id="Oil" name="Oil">
+            <label for="Oil">Oil</label>
+          </div>
+          <div>
+            <input type="checkbox" id="CNG" name="CNG">
+            <label for="CNG">CNG</label>
+          </div>
+          <div>
+            <input type="checkbox" id="Natural Gas" name="Natural Gas">
+            <label for="Natural Gas">Natural Gas</label>
+          </div>
+          <div>
+            <input type="checkbox" id="Gasoline" name="Gasoline">
+            <label for="Gasoline">Gasoline</label>
+          </div>
+          <div>
+            <input type="checkbox" id="Methanol" name="Methanol">
+            <label for="Methanol">Methanol</label>
+          </div>
+          <div>
+            <input type="checkbox" id="Bio Diesel" name="Bio Diesel">
+            <label for="Bio Diesel">Bio Diesel</label>
+          </div>
+        </fieldset>
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

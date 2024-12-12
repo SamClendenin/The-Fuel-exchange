@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/styles/Analytics.css}">
+</head>
+<body>
+<div class="dashboard-container" style="disaply: none;">
+    <div class="sidebar">
+        <div>
+        <h1>Analytics</h1>
+            <a th:href="@{/users/dashboard(role=${role}, sellerId=${sellerId})}" class="btn">Back to Dashboard</a>
+        <a href="#">Analytics</a>
+            <a th:href="@{/users/profile/{username}(username=${user.username})}">Profile</a>
+            <a href="/users/logout" class="btn">Logout</a>
+
+        </div>
+        <footer>
+            <p>&copy; 2024 The Fuel Exchange</p>
+        </footer>
+    </div>
+
+    <div class="main-content">
+        <h2>Analytics Overview</h2>
+
+        <div class="analytics-cards">
+            <div class="card">
+                <h3>Total Sales</h3>
+                <p th:text="${totalSales}"></p>
+            </div>
+            <div class="card">
+                <h3>Total Revenue</h3>
+                <p th:text="${totalRevenue}"></p>
+            </div>
+            <div class="card">
+                <h3>Top Product</h3>
+                <p th:text="${topSellingProduct != null ? topSellingProduct.title : 'No Sales Yet'}"></p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3>Sales Over Time</h3>
+            <canvas id="salesChart" width="400" height="200"></canvas>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:inline="javascript">
+    const monthlySalesData = /*[[${monthlySalesData}]]*/ [];
+
+        // Prepare data for the chart
+        const months = monthlySalesData.map(item => item.month);
+        const years = monthlySalesData.map(item => item.year);
+        const totalSales = monthlySalesData.map(item => item.totalRevenue);
+
+        // Create the chart
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: months.map((month, index) => `${month}/${years[index]}`), // X-axis labels (Month/Year)
+                datasets: [{
+                    label: 'Total Revenue',
+                    data: totalSales,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month/Year'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Total Revenue'
+                        }
+                    }
+                }
+            }
+        });
+</script>
+</body>
+</html>

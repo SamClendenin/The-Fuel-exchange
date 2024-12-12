@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewpoint" content="width=device-width, initial-s">
+  <title>Setting</title>
+  <link rel="stylesheet" th:href="@{/styles/Buyer-settings.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab" rel="stylesheet">
+</head>
+<body>
+<div class="sidebar">
+  <!-- Sidebar navigation -->
+  <h2>The Fuel Exchange</h2>
+  <ul class="nav-list">
+    <a th:href="@{/users/dashboard(role=${role}, buyerId=${buyerId})}">Dashboard</a>
+    <a th:href="@{/users/profile/{username}(username=${user.username})}">Profile</a>
+    <li><a href="Buyer-history.html">History</a></li>
+    <footer>
+      <a href="/users/logout">Log-out</a>
+      <li><a href="Buyer-settings.html">Settings</a> </li>
+    </footer>
+  </ul>
+</div>
+
+<div class="container">
+  <div>
+    <h1>Settings</h1>
+  </div>
+  <div>
+    <div>
+      <label for="togg-1" class="togg-label">
+        <span>Dark Mode</span>
+        <input type="checkbox" id="togg-1">
+        <div class="toggle-container">
+          <span class="toggle"></span>
+          <span class="toggle-c"></span>
+        </div>
+      </label>
+    </div>
+
+    <div>
+      <label for="togg-2" class="togg-label">
+        <span>New Listing Notification</span>
+        <input type="checkbox" id="togg-2">
+        <div class="toggle-container">
+          <span class="toggle"></span>
+          <span class="toggle-c"></span>
+        </div>
+      </label>
+    </div>
+
+    <div>
+      <label for="togg-3" class="togg-label">
+        <span>Message Notification</span>
+        <input type="checkbox" id="togg-3">
+        <div class="toggle-container">
+          <span class="toggle"></span>
+          <span class="toggle-c"></span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <h3>Messages view</h3>
+    </div>
+
+    <div>
+      <label for="radio1" class="flex">
+        <input type="radio" name="Filter" id="radio1">
+        <span>Newest On Top</span>
+      </label>
+    </div>
+
+    <div>
+      <label for="radio2" class="flex">
+        <input type="radio" name="Filter" id="radio2">
+        <span>Newest On Bottom</span>
+      </label>
+    </div>
+
+    <div>
+      <label for="radio3" class="flex">
+        <input type="radio" name="Filter" id="radio3">
+        <span>Off</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Function to toggle dark mode
+  function toggleDarkMode() {
+    const isDarkMode = document.getElementById("togg-1").checked;
+
+    // Add or remove the dark-mode class to/from the body and sidebar
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    document.querySelector(".sidebar").classList.toggle("dark-mode", isDarkMode);
+
+    // Save the user's preference in localStorage
+    localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
+  }
+
+  // Check the saved dark mode preference and apply it on page load
+  window.onload = function() {
+    const darkMode = localStorage.getItem("darkMode");
+    const toggleCheckbox = document.getElementById("togg-1");
+
+    // Set checkbox state based on the saved preference
+    if (darkMode === "enabled") {
+      toggleCheckbox.checked = true;
+      document.body.classList.add("dark-mode");
+      document.querySelector(".sidebar").classList.add("dark-mode");
+    }
+
+    // Add event listener to handle toggle
+    toggleCheckbox.addEventListener("change", toggleDarkMode);
+  };
+</script>
+
+
+</body>
+</html>

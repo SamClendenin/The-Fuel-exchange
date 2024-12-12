@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer signup</title>
+    <link rel="stylesheet" th:href="@{/styles/Style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="signup-form">
+        <header>
+            <img src="/images/50de99b76f0ea3922972c82a12ef4901.png" alt="The Fuel exchange" class="banner-logo">
+        </header>
+        <h1>Seller Signup</h1>
+        <form action="http://localhost:8080/users/register/buyer" id="sellerSignupForm" method="POST">
+            <input type="hidden" name="role" value="SELLER"/>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Enter Username" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Enter Email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" placeholder="Confirm Password" id="confirm-password" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History</title>
+  <link rel="stylesheet" th:href="@{/styles/Buyer-history.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab" rel="stylesheet">
+</head>
+<body>
+
+<div class="sidebar">
+  <!-- Sidebar navigation -->
+
+<!--  <div th:if="${role == 'BUYER'}" id="buyer-profile">-->
+
+    <div class="sidebar">
+      <div>
+        <h2>The Fuel Exchange</h2>
+        <a th:href="@{/users/dashboard(role=${role}, buyerId=${buyerId})}" class="btn">Dashboard</a>
+        <a th:href="@{/users/profile/{username}(username=${user.username})}">Profile</a>
+        <a th:href="@{/users/Cart.html}">Cart</a>
+        <a href="#">History</a>
+      </div>
+      <footer>
+        <a href="/users/settings" class="btn">Settings</a>
+        <a href="/users/logout" class="btn">Logout</a>
+      </footer>
+    </div>
+
+
+
+
+<div class="main-content">
+  <h1 align="center">Recent Orders</h1>
+
+  <!-- Table for Order History -->
+  <table id="order-history-table" style="width: 100%; border: 1px solid black; margin-top: 20px;">
+    <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Card Name</th>
+      <th>Order Date</th>
+      <th>Status</th>
+      <th>Delivery Address</th>
+      <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Orders will be populated here by JavaScript -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Fetch the order history data from the backend API
+  async function fetchOrderHistory() {
+    try {
+      const response = await fetch('/orders');
+      const orders = await response.json();
+
+      const tableBody = document.querySelector('#order-history-table tbody');
+      tableBody.innerHTML = ''; // Clear any existing data
+
+      orders.forEach(order => {
+        // Create a new row for each order
+        const row = document.createElement('tr');
+
+        // Create and append each cell in the row
+        row.innerHTML = `
+          <td>${order.orderId}</td>
+          <td>${order.cardName}</td>
+          <td>${new Date(order.orderDate).toLocaleString()}</td>
+          <td>${order.status}</td>
+          <td>${order.deliveryAddress}</td>
+          <td>${order.quantity}</td>
+        `;
+
+        tableBody.appendChild(row); // Append the row to the table body
+      });
+    } catch (error) {
+      console.error('Error fetching order history:', error);
+    }
+  }
+
+  // Call the fetchOrderHistory function when the page loads
+  window.onload = fetchOrderHistory;
+</script>
+
+</body>
+</html>

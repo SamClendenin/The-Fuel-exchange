@@ -1,0 +1,378 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0px;
+    background-color: #ffffff;
+}
+
+
+header {
+    background-color: #ffffff;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+}
+ header .banner-logo{
+    width: 319px;
+    height: 60px;
+}
+
+.filler-img{
+    width: 100%
+    height: auto;
+}
+
+.header-container{
+    bacground: #ffffff;
+    padding: 10px;
+    position: relative;
+
+}
+
+
+h1 {
+    margin: 0;
+}
+
+/*  Buyer filter button */
+.filter-button-value {
+    border: 2px solid #137DC5;
+    padding: 1em 2.2em;
+    border-radius: 3em;
+    background-color: transparent;
+    color:  #137DC5;
+    cursor: pointer;
+}
+.button-container {
+  display: flex;
+}
+
+
+.btn {
+    background-color: #000;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.signup-btn{
+    padding: 10px 30px;
+    background-color: #137DC5;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.signup-btn:hover {
+    background-color: #00008B
+}
+
+.top-right-button {
+    position: absolute;
+    width: 89px;
+    height: 27px;
+    top: 10px;
+    right: 10px;
+    radius: 40px;
+}
+.profile-top-right-button {
+    position: absolute;
+    width: 89px;
+    height: 35px;
+    top: 10px;
+    right: 10px;
+    radius: 40px;
+}
+
+.home-top-right-button {
+    position: absolute;
+    background-color: #137DC5;
+    color: white;
+    border: none;
+    width: 89px;
+    height: 27px;
+    top: 10px;
+    right: 10px;
+    border-radius: 40px;
+    font-size: 16px;
+    cursor: pointer
+}
+
+.top-right-button:hover {
+    background-color: #333
+}
+.plusbtn{
+    width: 35px;
+    height: 35px
+    border-bottom: solid 2px #4f3c35;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    font-size: 35px;
+    display: flex;
+    margin: 15px 10px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    vertical-align: top;
+}
+
+.container {
+    width:40%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 100px;
+    margin-top: 50px;
+    position: relative;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+h3 {
+    color: #333;
+}
+
+.homepage-text-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.text-box {
+    background-color: #ffffff;
+    passing: 20px;
+    border-radius: 8px;
+    width: 30%;
+    text-align: center;
+}
+
+
+.text-box h2{
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.text-box p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; /
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    right: 20%;
+    max-width: 600px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+* {box-sizing: border-box}
+        fieldset {
+            width: 100%;
+            padding: 20px;
+        }
+
+
+        .container h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            text-align: center;
+            font-size: 12px;
+            color: gray;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=email]{
+   width: 100%;
+   padding: 15px;
+   margin: 5px 0 22px 0;
+   display: inline-block;
+   border: none;
+   background: #f1f1f1;
+        }
+        input[type=text]:focus,
+        input[type=password]:focus,
+        input[type=email]:focus{
+          background-color: #ddd;
+          outline: none;
+        }
+
+        input[type=checkbox] {
+            margin-right: 5px;
+        }
+        hr {
+          border: 1px solid #f1f1f1;
+          margin-bottom: 25px;
+        }
+
+        .fuel-options {
+            margin: 15px 0;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .clearfix {
+            display: flex;
+            justify-content: center;
+        }
+
+        .signup-button {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 20px;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .signup-form {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .input-group {
+                    margin-bottom: 15px;
+                }
+
+                .checkbox-group {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+
+                .checkbox-group input[type="checkbox"] {
+                    transform: scale(0.8);
+                }
+
+                .checkbox-group label {
+                    margin-right: 10px;
+                }
+                .fuel-types {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    margin-bottom: 20px;
+                }
+
+                .fuel-types input[type="checkbox"] {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 5px;
+                }
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color:   #137DC5; /*#30305C; */
+    color: white;
+    position: fixed; /* Fix the sidebar to the left */
+    top: 0;          /* Align it to the top of the page */
+    left: 0;         /* Ensure it's positioned on the left side */
+    height: 100%;    /* Make the sidebar take full height of the viewport */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;   /* Ensure it stays on top of other content */
+}
+
+.sidebar h2 {
+    font-family: "Roboto Slab";
+    font-weight: 600;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-list li {
+    margin-bottom: 20px;
+}
+
+.nav-list li a {
+    color: white;
+    text-decoration: none;
+    font-family: "Poppins";
+    font-weight: 500;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-list li a:hover {
+    background-color: #50507A;
+}
+
+footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+footer li {
+    margin-bottom: 10px;
+}
+
+footer a {
+    display: block;
+}

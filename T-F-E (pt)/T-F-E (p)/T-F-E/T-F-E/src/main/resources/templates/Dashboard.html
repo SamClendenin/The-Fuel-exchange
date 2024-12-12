@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" th:href="@{/styles/Dash.css}">
+
+</head>
+<body>
+<div class="dashboard-container">
+  <div th:if="${role == 'BUYER'}">
+  <div id="buyer-dashboard">
+
+    <div class="sidebar">
+      <div>
+      <h2>The Fuel Exchange</h2>
+      <a href="#">Dashboard</a>
+        <a th:href="@{/users/profile/{username}(username=${user.username})}">Profile</a>
+      <a th:href="@{/users/Cart.html}">Cart</a>
+      <a href="Buyer-history.html">History</a>
+      </div>
+      <footer>
+        <a href="/users/logout">Log-out</a>
+        <a href="Buyer-settings.html">Settings</a>
+      </footer>
+    </div>
+
+
+  </div>
+    <div class="main-buyer-content">
+        <h2>Buyer Dashboard</h2> <br><br>
+        <div id="btn" class="filter-buttons">
+          <button class="filter-button-value btn active">All</button>
+          <button class="filter-button-value btn">Diesel</button>
+          <button class="filter-button-value btn">Gasoline</button>
+          <button class="filter-button-value btn">CNG</button>
+          <button class="filter-button-value btn">Natural Gas</button>
+          <button class="filter-button-value btn">Methanol</button>
+          <button class="filter-button-value btn">Biodiesel</button>
+          <button class="filter-button-value btn">Oil</button>
+        </div>
+
+      <div th:each="listing : ${listings}" class="listing-card">
+        <h3 th:text="${listing.title}">Listing Title</h3>
+        <p>Fuel Type: <span th:text="${listing.fuelType}">Fuel Type</span></p>
+        <p>Quantity: <span th:text="${listing.quantity}">Quantity</span></p>
+        <p>Price: <span th:text="${listing.price}">Price</span></p>
+        <p>Description: <span th:text="${listing.description}"></span></p>
+        <div class="button-container">
+          <button align="left" onclick="openModal('Seller')">Seller</button>
+          <!-- Add the listing data to the addToCart function -->
+          <button id="add-to-cart-btn" data-product-id="4">Add to Cart</button>
+<!--          <button align="right" onclick="addToCart('${listing.title}', '${listing.price}', '${listing.quantity}'))">Add to cart</button>-->
+        </div>
+      </div>
+
+      <!--add button-->
+      </div>
+      <footer>
+        <p>&copy; The Fuel Exchange</p>
+      </footer>
+    </div>
+
+
+
+  <!----------------------------------------------------------------->
+
+  <div th:if="${role == 'SELLER'}">
+    <div id="seller-dashboard">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div>
+          <h1>Seller Dashboard</h1>
+          <a href="#">Home</a>
+          <a th:href="@{/analytics/dashboard/{sellerId}(sellerId=${sellerId})}">Analytics</a>
+          <a th:href="@{/users/profile/{username}(username=${user.username})}">Profile</a>
+        </div>
+        <footer>
+          <a href="/users/logout" class="btn">Logout</a>
+          <p>&copy; 2024 The Fuel Exchange</p>
+        </footer>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="main-header">
+          <h2>Your Listings</h2>
+          <button class="create-listing-btn" onclick="openCreateListingForm()">+ Create New Listing</button>
+        </div>
+
+        <!-- Create Listing Form -->
+        <div id="createListingForm" style="display:none;">
+          <form action="/listings/createListing" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="fuelType">Fuel Type:</label>
+            <select id="fuelType" name="fuelType" required>
+              <option value="Diesel">Diesel</option>
+              <option value="Gasoline">Gasoline</option>
+              <option value="CNG">CNG</option>
+              <option value="Natural Gas">Natural Gas</option>
+              <option value="Methanol">Methanol</option>
+              <option value="Biodiesel">Biodiesel</option>
+              <option value="Oil">Oil</option>
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required><br>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required><br>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea><br>
+
+            <input type="hidden" id="sellerId" name="sellerId" value="${sellerId}">
+
+            <button type="submit">Create Listing</button>
+          </form>
+        </div>
+
+        <!-- Listings Container -->
+        <div th:each="listing : ${listings}" class="listing-card"
+             onclick="openModal('${listing.title}', '${listing.fuelType}', '${listing.quantity}', '${listing.price}', '${listing.description}')">
+          <h3 th:text="${listing.title}">Listing Title</h3>
+          <p>Fuel Type: <span th:text="${listing.fuelType}">Fuel Type</span></p>
+          <p>Quantity: <span th:text="${listing.quantity}">Quantity</span></p>
+          <p>Price: <span th:text="${listing.price}">Price</span></p>
+          <p>Description: <span th:text="${listing.description}"></span></p>
+        </div>
+
+        <div class="footer">
+          <p>Powered by The Fuel Exchange</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Listing Modal -->
+  <div id="listingModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Title Placeholder</h2>
+      <p><strong>Fuel Type:</strong> <span id="modalFuelType">Fuel Type Placeholder</span></p>
+      <p><strong>Quantity:</strong> <span id="modalQuantity">Quantity Placeholder</span></p>
+      <p><strong>Price:</strong> <span id="modalPrice">Price Placeholder</span></p>
+      <p><strong>Description:</strong> <span id="modalDescription">Description Placeholder</span></p>
+
+      <!-- Reviews Section -->
+      <div class="reviews-section">
+        <h3>Reviews:</h3>
+        <div class="review-item">
+          <p><strong>User1:</strong> Great quality fuel! Highly recommend.</p>
+          <p class="reply-btn" onclick="showReplySection(this)">Reply</p>
+          <div class="reply-section" style="display: none;">
+            <textarea rows="3" placeholder="Write your reply here..."></textarea>
+            <button>Post Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <script>
+        function submitListing() {
+    document.getElementById('listingForm').submit();
+  }
+
+  document.getElementById('sellerId').value = new URLSearchParams(window.location.search).get('sellerId');
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const role = urlParams.get('role')?.toLowerCase();
+
+  if (role === 'buyer') {
+    document.getElementById('buyer-dashboard').style.display = 'block';
+  } else if (role === 'seller') {
+    document.getElementById('seller-dashboard').style.display = 'block';
+  }
+
+  function openCreateListingForm() {
+    document.getElementById('createListingForm').style.display = 'block';
+  }
+
+ function openModal(title, fuelType, quantity, price, description) {
+  console.log("openModal triggered!");
+
+  // Log values to ensure they are passed correctly
+  console.log("Title:", title);
+  console.log("Fuel Type:", fuelType);
+  console.log("Quantity:", quantity);
+  console.log("Price:", price);
+  console.log("Description:", description);
+
+  // Update modal content with the values passed from the clicked listing
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalFuelType').textContent = fuelType;
+  document.getElementById('modalQuantity').textContent = quantity + ' liters'; // Add unit to quantity
+  document.getElementById('modalPrice').textContent = '$' + price + ' per unit'; // Ensure price is formatted
+  document.getElementById('modalDescription').textContent = description;
+
+  // Show the modal
+  document.getElementById('listingModal').style.display = 'block';
+}
+
+
+  function closeModal() {
+    document.getElementById('listingModal').style.display = 'none';
+  }
+
+  function showReplySection(replyBtn) {
+    const replySection = replyBtn.nextElementSibling;
+    replySection.style.display = replySection.style.display === 'block' ? 'none' : 'block';
+  }
+
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('listingModal')) {
+      closeModal();
+    }
+  };
+
+
+
+  //Filter button
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get all the filter buttons and the listings
+    const filterButtons = document.querySelectorAll('.filter-button-value');
+    const listings = document.querySelectorAll('.listing-card');
+
+    // Function to filter listings based on fuel type
+    function filterListings(filterType) {
+      console.log("Filtering by:", filterType); // Log the selected filter type
+
+      listings.forEach(listing => {
+        // Get the fuel type from the listing
+        const fuelType = listing.querySelector('p span').textContent.trim(); // Fuel Type is in <span> inside <p>
+        console.log("Listing fuelType:", fuelType); // Log the fuelType from the listing
+
+        // Show or hide listings based on the selected fuelType
+        if (filterType === 'All' || fuelType === filterType) {
+          listing.style.display = 'block'; // Show listing
+        } else {
+          listing.style.display = 'none'; // Hide listing
+        }
+      });
+    }
+
+    // Add event listeners to all filter buttons
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove the 'active' class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+
+        // Add the 'active' class to the clicked button
+        button.classList.add('active');
+
+        // Get the text content of the clicked button (e.g., 'Diesel', 'Gasoline', etc.)
+        const filterType = button.textContent.trim();
+        console.log("Filter type selected:", filterType); // Log the selected filter type
+
+        // Call the filter function with the selected fuel type
+        filterListings(filterType);
+      });
+    });
+  });
+
+
+ // Function to add an item to the cart
+ document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+    const productId = this.getAttribute('data-product-id');
+    // Send AJAX request to backend to add product to cart
+    fetch('/cart/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId: productId })
+    })
+    .then(response => {
+      if (response.ok) {
+        // Redirect to cart page after item is added
+        window.location.href = '/cart';
+      } else {
+        alert('Error adding item to cart');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+
+
+      </script>
+</body>
+</html>

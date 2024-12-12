@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <link rel="stylesheet" th:href="@{/styles/Dash.css}">
+</head>
+<body>
+<h1>Your Cart</h1>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="cartItem : ${cart.items}">
+        <td th:text="${cartItem.listing.title}"></td>
+        <td th:text="${cartItem.price}"></td>
+        <td th:text="${cartItem.quantity}"></td>
+        <td th:text="${cartItem.price * cartItem.quantity}"></td>
+    </tr>
+</table>
+
+<p>Total: <span th:text="${total}"></span></p>
+
+<form action="/cart/clear" method="post">
+    <button type="submit">Clear Cart</button>
+</form>
+
+<!-- Continue to Checkout Button -->
+<a href="/order"><button>Continue to Checkout</button></a>
+
+</body>
+</html>

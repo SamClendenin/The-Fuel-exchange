@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/styles/Profile.css}">
+</head>
+<body>
+<div class="container">
+
+    <!-- Buyer Profile Section -->
+    <div th:if="${role == 'BUYER'}" id="buyer-profile">
+        <div class="sidebar">
+            <div>
+            <h2>The Fuel Exchange</h2>
+                <a th:href="@{/users/dashboard(role=${role}, buyerId=${buyerId})}" class="btn">Dashboard</a>
+                <a th:href="@{/users/Cart.html}">Cart</a>
+                <a href="Buyer-history.html">History</a>
+            </div>
+            <footer>
+                <a href="/users/settings" class="btn">Settings</a>
+                <a href="/users/logout" class="btn">Logout</a>
+            </footer>
+
+        </div>
+        <div class="main-content">
+            <h2>Welcome to Your Profile</h2>
+            <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Password:</strong> <label for="password1"></label><input type="password" id="password1" th:value="${user.password}" readonly /></p>
+<!--            <button class="btn" onclick="editProfile()">Edit Profile</button>-->
+            <div>
+                <a th:href="@{/users/editProfile(username=${user.username})}" class="btn">Edit Profile</a>
+            </div>
+            <form th:action="@{/users/deleteAccount/{user_Id}(user_Id=${user.user_Id})}" method="POST">
+                <button type="submit" class="btn">Delete Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Seller Profile Section -->
+    <div th:if="${role == 'SELLER'}" id="seller-profile">
+        <div class="sidebar">
+            <div>
+            <h2>Welcome to Your Profile</h2>
+            <a th:href="@{/users/dashboard(role=${role}, sellerId=${sellerId})}" class="btn">Back to Dashboard</a>
+            <a th:href="@{/analytics/dashboard/{sellerId}(sellerId=${sellerId})}">Analytics</a>
+            <a href="/users/logout" class="btn">Logout</a>
+            </div>
+            <footer>
+                <p>&copy; 2024 The Fuel Exchange</p>
+            </footer>
+        </div>
+        <div class="main-content">
+            <h2>Seller Profile</h2>
+            <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+            <p><strong>Password:</strong> <label for="password"></label><input type="password" id="password" th:value="${user.password}" readonly /></p>
+            <p><strong>Company Name:</strong> <span th:text="${user.companyName}"></span></p>
+            <p><strong>Company Description:</strong> <span th:text="${user.companyDescription}"></span></p>
+            <div>
+                <a th:href="@{/users/editProfile(username=${user.username})}" class="btn">Edit Profile</a>
+            </div>
+            <form th:action="@{/users/deleteAccount/{user_Id}(user_Id=${user.user_Id})}" method="POST">
+                <button type="submit" class="btn">Delete Account</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

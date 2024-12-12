@@ -1,0 +1,192 @@
+body, html{
+    background-color: #EBEBFB;
+    color: #171730;
+    user-select: none;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    padding: 10px 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(200,200,200);
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h1, h3{
+    font-family: "Roboto Slab";
+    font-weight: 600;
+}
+
+span{
+    font-weight: 500;
+    font-family: "Poppins";
+}
+
+.toggle-container{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+.toggle{
+    width: 60px;
+    height: 35px;
+    border-radius: 40px;
+    background-color: #EBEBFB;
+    display: inline-block;
+}
+
+.toggle-c{
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    background-color: white;
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    transition: 300ms all;
+    border: 1px solid #8C8CA4;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+input[type="checkbox"]:checked + div .toggle-c{
+    left: 30px;
+    background-color: #30305C;
+    border-color: #30305C;
+}
+
+input[type="radio"] {
+    border: 0px;
+    width: 10%;
+    height: 20px;
+    accent-color: black;
+}
+
+.togg-label{
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.flex{
+    display: flex;
+    gap: 5px;
+}
+
+.bottom{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.bottom.hover{
+    text-decoration: underline;
+}
+
+label, input[type="radio"]{
+    cursor: pointer;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color:   #137DC5; /*#30305C; */
+    color: white;
+    position: fixed; /* Fix the sidebar to the left */
+    top: 0;          /* Align it to the top of the page */
+    left: 0;         /* Ensure it's positioned on the left side */
+    height: 100%;    /* Make the sidebar take full height of the viewport */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;   /* Ensure it stays on top of other content */
+}
+
+.sidebar h2 {
+    font-family: "Roboto Slab";
+    font-weight: 600;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-list li {
+    margin-bottom: 20px;
+}
+
+.nav-list li a {
+    color: white;
+    text-decoration: none;
+    font-family: "Poppins";
+    font-weight: 500;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-list li a:hover {
+    background-color: #50507A;
+}
+
+footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+footer li {
+    margin-bottom: 10px;
+}
+
+footer a {
+    display: block;
+}
+
+/* Main content container */
+.container {
+    margin-left: 270px;  /* Shift the container to the right to accommodate the sidebar */
+    padding: 20px;
+    box-sizing: border-box;
+    width: calc(100% - 270px);  /* Ensure the container doesn't exceed the screen width */
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(200,200,200);
+}
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.sidebar.dark-mode {
+  background-color: #333333;
+}
+
+.sidebar .nav-list a {
+  color: #ffffff;
+}
+
+.toggle-container {
+  background-color: #fff;
+}
+
+.toggle-c {
+  background-color: #333;
+}
